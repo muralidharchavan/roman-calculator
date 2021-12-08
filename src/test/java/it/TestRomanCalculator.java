@@ -75,4 +75,63 @@ public class TestRomanCalculator {
             assertEquals("CCCXXXIV", romanCalculator.calculateUsingRomanNumbers("sub", "M,D, C, L, X, V, I"));
         }
     }
+
+    @Nested
+    @DisplayName("Test Multiplication")
+    class TestMultiplication {
+        @Test
+        public void testIIItimesVEqualsXV() {
+            IConverterService mockService = mock(IConverterService.class);
+            RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
+
+            when(mockService.convertToNumber("III")).thenReturn(3);
+            when(mockService.convertToNumber("V")).thenReturn(5);
+            when(mockService.convertToRoman("15")).thenReturn("XV");
+            assertEquals("XV", romanCalculator.calculateUsingRomanNumbers("mult", "III,V"));
+        }
+
+        @Test
+        @DisplayName("Test 2*3*4=24")
+        public void testIItimesIIITimesIVEqualsXXIV() {
+            IConverterService mockService = mock(IConverterService.class);
+            RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
+
+            when(mockService.convertToNumber("II")).thenReturn(2);
+            when(mockService.convertToNumber("III")).thenReturn(3);
+            when(mockService.convertToNumber("IV")).thenReturn(4);
+            when(mockService.convertToRoman("24")).thenReturn("XXIV");
+            assertEquals("XXIV", romanCalculator.calculateUsingRomanNumbers("mult", "II,III,IV"));
+        }
+    }
+
+    @Nested
+    @DisplayName("Test Division")
+    class TestDivision {
+        @Test
+        public void testVIDividedByIIIisII() {
+            IConverterService mockService = mock(IConverterService.class);
+            RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
+
+            when(mockService.convertToNumber("VI")).thenReturn(6);
+            when(mockService.convertToNumber("III")).thenReturn(3);
+            when(mockService.convertToRoman("2")).thenReturn("II");
+            assertEquals("II", romanCalculator.calculateUsingRomanNumbers("div", "VI,III"));
+        }
+
+        @Test
+        public void testMixedFraction() {
+            IConverterService mockService = mock(IConverterService.class);
+            RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
+
+            when(mockService.convertToNumber("XIX")).thenReturn(19);
+            when(mockService.convertToNumber("III")).thenReturn(3);
+            when(mockService.convertToNumber("II")).thenReturn(2);
+            when(mockService.convertToRoman("3")).thenReturn("III");
+            when(mockService.convertToRoman("1")).thenReturn("I");
+            when(mockService.convertToRoman("6")).thenReturn("VI");
+
+            assertEquals("III (I/VI)", romanCalculator.calculateUsingRomanNumbers("div", "XIX,III,II"));
+        }
+
+    }
 }

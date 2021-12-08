@@ -14,7 +14,8 @@ public class RomanCalculatorService {
     public String calculateUsingRomanNumbers(String operator, String romanNumbers) {
 
         String decimalResponse = CalculatorService.calculate(operator, convertToInt(romanNumbers));
-        
+        System.out.println("Decimal response: " + decimalResponse);
+
         if (operator.equals("div")) {
             return convertMixedFractionToRoman(decimalResponse);
         }
@@ -27,14 +28,26 @@ public class RomanCalculatorService {
         if (numberMixedFraction.length() > 1) {
             String quotientNumber = numberMixedFraction.substring(0, numberMixedFraction.indexOf("("));
             String remainderNumber = numberMixedFraction.substring(numberMixedFraction.indexOf("(") + 1,
+                    numberMixedFraction.indexOf("/"));
+            String divisorNumber = numberMixedFraction.substring(numberMixedFraction.indexOf("/") + 1,
                     numberMixedFraction.indexOf(")"));
-            String divisorNumber = numberMixedFraction.substring(numberMixedFraction.indexOf(")") + 1);
+            // String divisorNumber =
+            // numberMixedFraction.substring(numberMixedFraction.indexOf(")") + 1);
+            System.out.println("Quotient: " + quotientNumber);
+            System.out.println("Remainder: " + remainderNumber);
+            System.out.println("Divisor: " + divisorNumber);
 
             String quotientRoman = converter.convertToRoman(quotientNumber);
             String remainderRoman = converter.convertToRoman(remainderNumber);
             String divisorRoman = converter.convertToRoman(divisorNumber);
+            System.out.println("Quotient Roman: " + quotientRoman);
+            System.out.println("Remainder Roman: " + remainderRoman);
+            System.out.println("Divisor Roman: " + divisorRoman);
 
-            return quotientRoman + "(" + remainderRoman + "/" + divisorRoman + ")";
+            String response = quotientRoman + " (" + remainderRoman + "/" + divisorRoman + ")";
+            System.out.println("Mixed fraction response: " + response);
+
+            return response;
         }
         return converter.convertToRoman(numberMixedFraction);
     }
