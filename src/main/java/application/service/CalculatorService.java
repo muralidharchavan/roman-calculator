@@ -1,22 +1,24 @@
 package application.service;
 
+import application.utils.CalculatorUtils;
+
 public class CalculatorService {
 
-    public static int calculate(String operation, int[] numbers) throws Exception {
-        int result = 0;
+    public static String calculate(String operation, int[] numbers) {
+        String result = "";
         operation = operation.toLowerCase();
         switch (operation) {
             case "add":
-                result = AddService.add(numbers);
+                result = CalculatorUtils.add(numbers) + "";
                 break;
             case "sub":
-                result = SubtractService.subtract(numbers);
+                result = CalculatorUtils.subtract(numbers) + "";
                 break;
             case "mult":
-                result = MultiplyService.multiply(numbers);
+                result = CalculatorUtils.multiply(numbers) + "";
                 break;
             case "div":
-                result = DivisionService.divide(numbers);
+                result = CalculatorUtils.divide(numbers);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid operation");
