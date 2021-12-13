@@ -57,6 +57,27 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>au.com.dius</groupId>
+            <artifactId>pact-jvm-consumer-junit</artifactId>
+            <version>4.0.10</version>
+        </dependency>
+        <dependency>
+			<groupId>au.com.dius.pact.consumer</groupId>
+			<artifactId>junit5</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.32</version>
+		</dependency>
+        <dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-junit</artifactId>
+			<version>2.0.0.0</version>
+		</dependency>
     </dependencies>
 
     <build>
@@ -91,6 +112,30 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>au.com.dius.pact.provider</groupId>
+                <artifactId>maven</artifactId>
+                <version>4.1.21</version>
+                <configuration>
+                    <serviceProviders>
+                        <serviceProvider>
+                            <name>System</name>
+                            <protocol>http</protocol>
+                            <host>localhost</host>
+                            <port>9080</port>
+                            <path>/</path>
+                            <pactFileDirectory>target/pacts</pactFileDirectory>
+                        </serviceProvider>
+                    </serviceProviders>
+                    <projectVersion>${project.version}</projectVersion>
+                    <skipPactPublish>false</skipPactPublish>
+                    <pactBrokerUrl>http://localhost:9292</pactBrokerUrl>
+                    <tags>
+                        <tag>open-liberty-pact</tag>
+                    </tags>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>
