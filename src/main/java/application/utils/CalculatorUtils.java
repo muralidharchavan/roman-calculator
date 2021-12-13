@@ -30,6 +30,8 @@ public class CalculatorUtils {
 
     public static String divide(int[] numbers) {
 
+        // First multiply all numbers except the first number
+        // Then divide the result by the first number
         int product = 1;
         for (int i = 1; i < numbers.length; i++) {
             product = product * numbers[i];

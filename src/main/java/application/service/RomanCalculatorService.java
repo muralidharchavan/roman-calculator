@@ -11,7 +11,7 @@ public class RomanCalculatorService {
     public RomanCalculatorService() {
     }
 
-    public String calculateUsingRomanNumbers(String operator, String romanNumbers) {
+    public String calculateUsingRomanNumbers(String operator, String romanNumbers) throws Exception {
 
         String decimalResponse = CalculatorService.calculate(operator, convertToInt(romanNumbers));
         System.out.println("Decimal response: " + decimalResponse);
@@ -23,7 +23,7 @@ public class RomanCalculatorService {
         return converter.convertToRoman(decimalResponse);
     }
 
-    private String convertMixedFractionToRoman(String numberMixedFraction) {
+    private String convertMixedFractionToRoman(String numberMixedFraction) throws Exception {
 
         if (numberMixedFraction.length() > 1) {
             String quotientNumber = numberMixedFraction.substring(0, numberMixedFraction.indexOf("("));
@@ -31,8 +31,6 @@ public class RomanCalculatorService {
                     numberMixedFraction.indexOf("/"));
             String divisorNumber = numberMixedFraction.substring(numberMixedFraction.indexOf("/") + 1,
                     numberMixedFraction.indexOf(")"));
-            // String divisorNumber =
-            // numberMixedFraction.substring(numberMixedFraction.indexOf(")") + 1);
             System.out.println("Quotient: " + quotientNumber);
             System.out.println("Remainder: " + remainderNumber);
             System.out.println("Divisor: " + divisorNumber);
@@ -52,7 +50,7 @@ public class RomanCalculatorService {
         return converter.convertToRoman(numberMixedFraction);
     }
 
-    private int[] convertToInt(String romanNumbersStr) {
+    private int[] convertToInt(String romanNumbersStr) throws Exception {
 
         String[] romanNumbersArray = convertToArray(romanNumbersStr);
         int[] intNumbersArray = new int[romanNumbersArray.length];

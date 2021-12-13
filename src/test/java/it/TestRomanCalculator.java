@@ -19,18 +19,19 @@ public class TestRomanCalculator {
 
         @Test
         @DisplayName("Test I+I=II")
-        public void testIPlusIEqualsII() {
+        public void testIPlusIEqualsII() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
             when(mockService.convertToNumber("I")).thenReturn(1);
             when(mockService.convertToRoman("2")).thenReturn("II");
             assertEquals("II", romanCalculator.calculateUsingRomanNumbers("add", "I,I"));
+            // TODO: Verify that the mockService was called with the correct parameters
         }
 
         @Test
         @DisplayName("Test III+IV+V=XII")
-        public void testIIIPlusIVPlusVEqualsXII() {
+        public void testIIIPlusIVPlusVEqualsXII() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
@@ -48,7 +49,7 @@ public class TestRomanCalculator {
 
         @Test
         @DisplayName("Test III-II=I")
-        public void testIIIMinuxIIEqualsI() {
+        public void testIIIMinuxIIEqualsI() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
@@ -60,7 +61,7 @@ public class TestRomanCalculator {
 
         @Test
         @DisplayName("Test M-D-C-L-X-V-I=CCCXXXIV")
-        public void testBigSubraction() {
+        public void testBigSubraction() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
@@ -80,7 +81,7 @@ public class TestRomanCalculator {
     @DisplayName("Test Multiplication")
     class TestMultiplication {
         @Test
-        public void testIIItimesVEqualsXV() {
+        public void testIIItimesVEqualsXV() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
@@ -92,7 +93,7 @@ public class TestRomanCalculator {
 
         @Test
         @DisplayName("Test 2*3*4=24")
-        public void testIItimesIIITimesIVEqualsXXIV() {
+        public void testIItimesIIITimesIVEqualsXXIV() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
@@ -108,7 +109,7 @@ public class TestRomanCalculator {
     @DisplayName("Test Division")
     class TestDivision {
         @Test
-        public void testVIDividedByIIIisII() {
+        public void testVIDividedByIIIisII() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
@@ -119,7 +120,7 @@ public class TestRomanCalculator {
         }
 
         @Test
-        public void testMixedFraction() {
+        public void testMixedFraction() throws Exception {
             IConverterService mockService = mock(IConverterService.class);
             RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
 
@@ -134,4 +135,24 @@ public class TestRomanCalculator {
         }
 
     }
+
+    @Nested
+    @DisplayName("Test Other valid Cases")
+    class TestOtherValidCases {
+
+        @Test
+        @DisplayName("Test single number")
+        public void testSingleNumber() throws Exception {
+            IConverterService mockService = mock(IConverterService.class);
+            RomanCalculatorService romanCalculator = new RomanCalculatorService(mockService);
+
+            when(mockService.convertToNumber("I")).thenReturn(1);
+            when(mockService.convertToRoman("1")).thenReturn("I");
+            assertEquals("I", romanCalculator.calculateUsingRomanNumbers("add", "I"));
+            assertEquals("I", romanCalculator.calculateUsingRomanNumbers("sub", "I"));
+            assertEquals("I", romanCalculator.calculateUsingRomanNumbers("mult", "I"));
+            assertEquals("I", romanCalculator.calculateUsingRomanNumbers("div", "I"));
+        }
+    }
+
 }
