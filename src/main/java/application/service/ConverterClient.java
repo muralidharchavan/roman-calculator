@@ -9,11 +9,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-public class IConverterServiceImpl implements IConverterService {
+public class ConverterClient implements ConverterInterface {
 
     private String url = "";
 
-    public IConverterServiceImpl(String url) {
+    public ConverterClient(String url) {
         this.url = url;
     }
 
@@ -22,7 +22,7 @@ public class IConverterServiceImpl implements IConverterService {
     }
 
     @Override
-    public int convertToNumber(String romanNumber) throws Exception {
+    public int toNumber(String romanNumber) throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         String result = "";
         try {
@@ -53,7 +53,7 @@ public class IConverterServiceImpl implements IConverterService {
     }
 
     @Override
-    public String convertToRoman(String number) throws Exception {
+    public String toNumeral(String number) throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         String result = "";
         try {
