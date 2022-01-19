@@ -37,7 +37,7 @@ public class TestNumeralsCalculator {
         }
 
         @Test
-        @DisplayName("Test invalidResult ")
+        @DisplayName("Test invalid adition Result ")
         public void testInvalidResult() throws Exception {
             ConverterInterface mockService = mock(ConverterInterface.class);
             CalculatorService numeralCalculator = new CalculatorService(mockService);
@@ -79,7 +79,7 @@ public class TestNumeralsCalculator {
         }
 
         @Test
-        @DisplayName("Test invalid Subtraction ")
+        @DisplayName("Test invalid Subtraction result ")
         public void testInvalidSubtraction() throws Exception {
             ConverterInterface mockService = mock(ConverterInterface.class);
             CalculatorService numeralCalculator = new CalculatorService(mockService);

@@ -61,7 +61,7 @@ public class TestNumbersCalculator {
     @DisplayName("Test Multiplication")
     class TestMultiplication {
         @Test
-        @DisplayName("Test multiply")
+        @DisplayName("Test valid multiplication")
         public void testMultiply1And2() throws Exception {
             assertEquals("2", CalculatorService.calculate("mult", new int[] { 1, 2 }));
         }

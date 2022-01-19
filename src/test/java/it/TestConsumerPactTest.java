@@ -1,4 +1,4 @@
-package pact;
+package it;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -27,7 +27,7 @@ import au.com.dius.pact.core.model.annotations.Pact;
 
 @ExtendWith(PactConsumerTestExt.class)
 @PactTestFor(providerName = "converter-mc", port = "1234", pactVersion = PactSpecVersion.V3)
-public class ConsumerPactTest {
+public class TestConsumerPactTest {
 
     private Map<String, String> headers = MapUtils.putAll(new HashMap<>(), new String[] {
             "Content-Type", "text/plain"
